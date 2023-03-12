@@ -12,7 +12,7 @@ export class DatabaseConnectionService implements TypeOrmOptionsFactory {
       port: 5432,
       username: 'postgres',
       password: 'aioshima',
-      database: 'crypto_blockchain',
+      database: 'crypto_blockchain_new',
       synchronize: true,
       // dropSchema: true,
       // logging: true,
