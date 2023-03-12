@@ -47,6 +47,9 @@ export class MysqlBaseService<Entity extends BaseEntity, Dto> {
           id: id as any,
         },
       });
+      if (!data) throw new HttpException('Bad request', HttpStatus.NOT_FOUND);
+      console.log(data);
+
       // return plainToInstance(Userany, user, { excludeExtraneousValues: true });
       return data;
     } catch (err) {
@@ -56,8 +59,8 @@ export class MysqlBaseService<Entity extends BaseEntity, Dto> {
 
   async update(id: number, data: any): Promise<any> {
     try {
-      const userold = await this.findOne(id);
-      if (!userold) throw new NotFoundException();
+      const dataOld = await this.findOne(id);
+      if (!dataOld) throw new NotFoundException();
       //   return plainToInstance(any, user, { excludeExtraneousValues: true });
       //   user.firstName && (userold.firstName = user.firstName);
       //   user.lastName && (userold.lastName = user.lastName);
