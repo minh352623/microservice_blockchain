@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { TypeOrmOptionsFactory, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ExchangeEntity } from 'src/exchange/exchange.entity';
+import 'dotenv/config';
 
 @Injectable()
 export class DatabaseConnectionService implements TypeOrmOptionsFactory {
@@ -8,11 +9,11 @@ export class DatabaseConnectionService implements TypeOrmOptionsFactory {
     return {
       name: 'default',
       type: 'postgres',
-      host: 'localhost',
+      host: process.env.HOST,
       port: 5432,
-      username: 'postgres',
-      password: 'aioshima',
-      database: 'crypto_blockchain_new',
+      username: process.env.USER_NAME,
+      password: process.env.PASSWORD,
+      database: process.env.DATABASE_NAME,
       synchronize: true,
       // dropSchema: true,
       // logging: true,

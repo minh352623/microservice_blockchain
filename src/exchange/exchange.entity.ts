@@ -10,4 +10,7 @@ export class ExchangeEntity extends BaseEntity {
 
   @Column({ type: 'double precision' })
   price_exchange: number;
+
+  @Column()
+  quantity_exchange: number;
 }
