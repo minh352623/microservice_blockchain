@@ -11,7 +11,9 @@ import {
   Get,
   Query,
   ParseIntPipe,
+  UseInterceptors,
 } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { ExchangeDTO } from './exchange.dto';
 import { ExchangeService } from './exchange.service';
@@ -44,9 +46,21 @@ export class ExchangeController {
   }
 
   // @UseGuards(JwtAuthGuard)
+
+  //{
+  // "name_exchange":"ád",
+  // "price_exchange":45.7,
+  // "number_exchange":2
+  // }
   @Post()
+  @UseInterceptors(FileInterceptor('test')) // sử dụng cái này mới đọc da dc trong formdata
   createExchange(@Body() exchange: ExchangeDTO) {
     try {
+      //check so du
+
+      const money_paid = +exchange.quantity_exchange * +exchange.price_exchange;
+      console.log(money_paid);
+
       return this.exchangeService.save(exchange);
     } catch (e) {
       console.log(e);
@@ -67,7 +81,7 @@ export class ExchangeController {
   deleteExchange(@Param('id') id: number) {
     try {
       if (!id) throw new HttpException('Bad request', HttpStatus.BAD_REQUEST);
-      return this.exchangeService.deleteFocreById(id);
+      return this.exchangeService.softDeleteOneById(id);
     } catch (e) {
       console.log(e);
     }

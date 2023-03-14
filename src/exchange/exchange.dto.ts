@@ -6,4 +6,7 @@ export class ExchangeDTO {
 
   @IsNumber()
   price_exchange: number;
+
+  @IsNumber()
+  quantity_exchange: number;
 }
