@@ -1,5 +1,5 @@
-import { BaseEntity } from 'src/common/mysql/base.entity';
-import { Column, Double, Entity } from 'typeorm';
+import { BaseEntity } from 'src/common/postgres/base.entity';
+import { Column, Double, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({
   name: 'exchange',

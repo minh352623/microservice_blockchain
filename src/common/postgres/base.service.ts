@@ -12,7 +12,6 @@ export class MysqlBaseService<Entity extends BaseEntity, Dto> {
 
   async save(data: Dto): Promise<Dto> {
     const dataNew = await this.repo.save(data as any);
-
     return dataNew;
   }
 
